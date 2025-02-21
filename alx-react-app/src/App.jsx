@@ -14,8 +14,8 @@ function App() {
     <>
       <WelcomeMessage />
       <Header />
-      <MainContent/>
-      <Footer/>
+      <MainContent />
+      <Footer />
       <div>
         <a href="https://vite.dev" target="_blank">
           <img src={viteLogo} className="logo" alt="Vite logo" />
