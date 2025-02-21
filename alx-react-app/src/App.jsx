@@ -41,3 +41,20 @@ function App() {
 }
 
 export default App
+import React from 'react';
+import UserProfile from './components/UserProfile';
+
+const App = () => {
+  return (
+    <div>
+      <h1>Welcome to the User Profile App</h1>
+      <UserProfile 
+        name="Alice" 
+        age="25" 
+        bio="Loves hiking and photography" 
+      />
+    </div>
+  );
+};
+
+export default App;
