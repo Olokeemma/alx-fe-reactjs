@@ -28,9 +28,11 @@ export default App;
         </a>
       </div>
       <h1>Vite + React</h1>
+    
       <div className="card">
         <button onClick={() => setCount((count) => count + 1)}>
           count is {count}
+        
         </button>
         <p>
           Edit <code>src/App.jsx</code> and save to test HMR
@@ -59,5 +61,19 @@ const App = () => {
     </div>
   );
 };
+
+export default App;
+// src/App.jsx
+import React from 'react';
+import Counter from './components/Counter';
+
+function App() {
+  return (
+    <div>
+      <h1>React Counter App</h1>
+      <Counter />
+    </div>
+  );
+}
 
 export default App;
