@@ -8,12 +8,18 @@ const RegistrationForm = () => {
 
       const handleSubmit = (e) => {
         e.preventDefault()
-        if (!username || !email || !password ) {
-            setError("all input are required")
+        if (!username){
+            setError("INPUT USERNAME")
           }
-          setError("")
-          console.log('Form data submitted:', username,email,password);
-
+        if (!email){
+            setError("input email")  
+        }
+        if (!password){
+            setError("input password")
+        }else{
+            console.log('Form data submitted:', username,email,password);
+        }
+          
           setUsername('')
           setEmail('')
           setPassword('')
