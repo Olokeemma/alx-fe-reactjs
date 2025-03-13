@@ -4,18 +4,18 @@ const RegistrationForm = () => {
     const [username, setUsername] = useState('')
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
-    const[error, setError] = useState('')
+    const[error, setErrors] = useState('')
 
       const handleSubmit = (e) => {
         e.preventDefault()
         if (!username){
-            setError("INPUT USERNAME")
+            setErrors("INPUT USERNAME")
           }
         if (!email){
-            setError("input email")  
+            setErrors("input email")  
         }
         if (!password){
-            setError("input password")
+            setErrors("input password")
         }else{
             console.log('Form data submitted:', username,email,password);
         }
@@ -23,7 +23,7 @@ const RegistrationForm = () => {
           setUsername('')
           setEmail('')
           setPassword('')
-        setError('')
+        setErrors('')
       };
 
       
