@@ -23,6 +23,7 @@ const RegistrationForm = () => {
           setUsername('')
           setEmail('')
           setPassword('')
+        setError('')
       };
 
       
