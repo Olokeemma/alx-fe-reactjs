@@ -1,6 +1,6 @@
 // src/App.js
 import { QueryClient, QueryClientProvider } from 'react-query';
-import PostsComponent from './PostsComponent'; // we'll create this next
+import PostsComponent from './assets/PostsComponent'; // we'll create this next
 
 const queryClient = new QueryClient();
 
