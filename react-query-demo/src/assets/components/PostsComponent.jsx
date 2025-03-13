@@ -1,4 +1,4 @@
-// src/PostsComponent.jsx
+// src/PostsComponent.js
 import React from 'react';
 import { useQuery } from 'react-query';
 
