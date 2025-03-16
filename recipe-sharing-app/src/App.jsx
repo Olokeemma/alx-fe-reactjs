@@ -1,40 +1,31 @@
-import React from 'react';
-import RecipeList from './components/RecipeList';
+// Importing necessary React and component files
+import React, { useState } from "react";
+
+// Import AddRecipeForm and RecipeList components
 import AddRecipeForm from './components/AddRecipeForm';
+import RecipeList from './components/RecipeList';
 
 function App() {
+  const [recipes, setRecipes] = useState([]);
+
+  // Function to handle adding new recipes
+  const addRecipe = (newRecipe) => {
+    setRecipes([...recipes, newRecipe]);
+  };
+
   return (
     <div className="App">
-      <h1>Recipe Sharing Application</h1>
-      <AddRecipeForm />
-      <RecipeList />
+      <h1>Recipe Book</h1>
+
+      {/* Rendering the AddRecipeForm component and passing addRecipe as a prop */}
+      <AddRecipeForm onAddRecipe={addRecipe} />
+
+      {/* Rendering the RecipeList component and passing recipes as a prop */}
+      <RecipeList recipes={recipes} />
     </div>
   );
 }
 
 export default App;
-import React from 'react';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import RecipeList from './components/RecipeList';
-import AddRecipeForm from './components/AddRecipeForm';
-import RecipeDetails from './components/RecipeDetails';
-import EditRecipeForm from './components/EditRecipeForm';
 
-function App() {
-  return (
-    <Router>
-      <div className="App">
-        <h1>Recipe Sharing Application</h1>
-        <AddRecipeForm />
-        <Routes>
-          <Route path="/" element={<RecipeList />} />
-          <Route path="/recipe/:recipeId" element={<RecipeDetails />} />
-          <Route path="/edit/:recipeId" element={<EditRecipeForm />} />
-        </Routes>
-      </div>
-    </Router>
-  );
-}
-
-export default App;
 
