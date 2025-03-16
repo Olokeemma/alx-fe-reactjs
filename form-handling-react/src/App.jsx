@@ -1,8 +1,6 @@
-import PostsComponent from './PostsComponent';
-
 import React from 'react';
-import { QueryClient, QueryClientProvider } from 'react-query';  // Import React Query
-import PostsComponent from './PostsComponent';  // Import your PostsComponent
+import { QueryClient, QueryClientProvider } from 'react-query';
+import PostsComponent from './PostsComponent';  // Correctly import the PostsComponent
 
 // Create a new QueryClient instance
 const queryClient = new QueryClient();
@@ -17,4 +15,5 @@ function App() {
 }
 
 export default App;
+
 
