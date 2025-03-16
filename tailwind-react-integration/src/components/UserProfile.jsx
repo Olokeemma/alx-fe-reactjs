@@ -4,6 +4,8 @@ const UserProfile = () => {
   return (
     <div className="p-4 sm:p-4 md:p-8 max-w-xs sm:max-w-sm md:max-w-lg mx-auto bg-white shadow-md rounded-lg">
       <div className="flex justify-center mb-4">
+      <div className="p-4 sm:p-4 md:p-8 max-w-xs sm:max-w-sm md:max-w-lg mx-auto bg-white shadow-md rounded-lg">
+
         {/* Profile Image */}
         <img
           src="https://via.placeholder.com/150"
@@ -25,4 +27,3 @@ const UserProfile = () => {
 
 export default UserProfile;
 
-  
