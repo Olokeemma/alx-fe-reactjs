@@ -17,5 +17,30 @@ export const getRecipesFromStorage = () => {
     recipes.push(newRecipe);
     saveRecipesToStorage(recipes);
   };
+  import create from 'zustand';
 
+  // Create the Zustand store
+  export const useRecipeStore = create((set) => ({
+    recipes: [], // Initially, no recipes in the store
+  
+    // Function to set recipes
+    setRecipes: (newRecipes) => set({ recipes: newRecipes }),
+  
+    // Function to add a new recipe
+    addRecipe: (newRecipe) => set((state) => ({
+      recipes: [...state.recipes, newRecipe],
+    })),
+  
+    // Function to load recipes from local storage
+    loadRecipes: () => {
+      const savedRecipes = JSON.parse(localStorage.getItem('recipes')) || [];
+      set({ recipes: savedRecipes });
+    },
+  
+    // Function to save recipes to local storage
+    saveRecipes: () => {
+      localStorage.setItem('recipes', JSON.stringify(get().recipes));
+    },
+  }));
+  
   
