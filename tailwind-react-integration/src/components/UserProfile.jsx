@@ -1,4 +1,3 @@
-
 // src/components/UserProfile.jsx
 function UserProfile() {
   return (
