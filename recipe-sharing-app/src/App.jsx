@@ -1,35 +1,5 @@
-// Importing necessary React and component files
-import React, { useState } from "react";
-
-// Import AddRecipeForm and RecipeList components
-import AddRecipeForm from './components/AddRecipeForm';
-import RecipeList from './components/RecipeList';
-
-function App() {
-  const [recipes, setRecipes] = useState([]);
-
-  // Function to handle adding new recipes
-  const addRecipe = (newRecipe) => {
-    setRecipes([...recipes, newRecipe]);
-  };
-
-  return (
-    <div className="App">
-      <h1>Recipe Book</h1>
-
-      {/* Rendering the AddRecipeForm component and passing addRecipe as a prop */}
-      <AddRecipeForm onAddRecipe={addRecipe} />
-
-      {/* Rendering the RecipeList component and passing recipes as a prop */}
-      <RecipeList recipes={recipes} />
-    </div>
-  );
-}
-
-export default App;
-
 import React, { useEffect } from 'react';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';  // Updated import for React Router v6
 import { useRecipeStore } from './components/recipeStore';
 import AddRecipeForm from './components/AddRecipeForm';
 import RecipeList from './components/RecipeList';
@@ -47,24 +17,19 @@ function App() {
       <div className="App">
         <h1>Recipe Book</h1>
 
-        <Switch>
-          <Route path="/recipe/:id">
-            {({ match }) => {
-              const recipeId = parseInt(match.params.id, 10);
-              return <RecipeDetails recipeId={recipeId} />;
-            }}
-          </Route>
-          <Route path="/add">
-            <AddRecipeForm />
-          </Route>
-          <Route path="/">
-            <RecipeList recipes={recipes} />
-          </Route>
-        </Switch>
+        <Routes>  {/* Updated from Switch to Routes */}
+          {/* Route for viewing a single recipe's details */}
+          <Route path="/recipe/:id" element={<RecipeDetails />} />
+
+          {/* Route for adding a new recipe */}
+          <Route path="/add" element={<AddRecipeForm />} />
+
+          {/* Route for listing all recipes */}
+          <Route path="/" element={<RecipeList recipes={recipes} />} />
+        </Routes>
       </div>
     </Router>
   );
 }
 
 export default App;
-
