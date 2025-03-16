@@ -30,6 +30,20 @@ function App() {
       </p>
     </>
   )
+
 }
 
 export default App
+import React from "react";
+import "./index.css"; // Import Tailwind styles
+
+function App() {
+  return (
+    <div className="min-h-screen flex items-center justify-center bg-gray-100">
+      <h1 className="text-4xl font-bold text-blue-500">Welcome to Tailwind CSS in React!</h1>
+    </div>
+  );
+}
+
+export default App;
+
