@@ -66,3 +66,33 @@ const RecipeList = ({ recipes }) => {
 
 export default RecipeList;
 
+import React, { useEffect } from 'react';
+import { useRecipeStore } from './recipeStore';
+import RecipeItem from './RecipeItem';  // Assuming you have a RecipeItem component
+
+const RecipeList = () => {
+  const filteredRecipes = useRecipeStore(state => state.filteredRecipes);
+  const recipes = useRecipeStore(state => state.recipes);
+  const filterRecipes = useRecipeStore(state => state.filterRecipes);
+
+  // Ensure the list is filtered when recipes change
+  useEffect(() => {
+    filterRecipes();
+  }, [recipes, filterRecipes]);
+
+  return (
+    <div>
+      <h2>Recipe List</h2>
+      {filteredRecipes.length === 0 ? (
+        <p>No recipes found</p>
+      ) : (
+        filteredRecipes.map(recipe => (
+          <RecipeItem key={recipe.id} recipe={recipe} />
+        ))
+      )}
+    </div>
+  );
+};
+
+export default RecipeList;
+

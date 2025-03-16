@@ -33,3 +33,35 @@ function App() {
 }
 
 export default App;
+import React, { useEffect } from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { useRecipeStore } from './components/recipeStore';
+import RecipeList from './components/RecipeList';
+import AddRecipeForm from './components/AddRecipeForm';
+import RecipeDetails from './components/RecipeDetails';
+import SearchBar from './components/SearchBar';
+
+function App() {
+  const { loadRecipes, recipes } = useRecipeStore();
+
+  useEffect(() => {
+    loadRecipes();  // Load recipes from localStorage or server when app starts
+  }, [loadRecipes]);
+
+  return (
+    <Router>
+      <div className="App">
+        <h1>Recipe Sharing App</h1>
+        <SearchBar />  {/* The search bar component */}
+        
+        <Routes>
+          <Route path="/" element={<RecipeList />} />
+          <Route path="/add" element={<AddRecipeForm />} />
+          <Route path="/recipe/:id" element={<RecipeDetails />} />
+        </Routes>
+      </div>
+    </Router>
+  );
+}
+
+export default App;

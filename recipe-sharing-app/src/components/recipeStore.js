@@ -75,6 +75,25 @@ export const useRecipeStore = create((set) => ({
     localStorage.setItem('recipes', JSON.stringify(get().recipes));
   },
 }));
+import create from 'zustand';
+
+const useRecipeStore = create(set => ({
+  recipes: [],  // This will store all the recipes
+  searchTerm: '',  // The term users enter in the search bar
+  setSearchTerm: (term) => set({ searchTerm: term }),  // Action to update the search term
+  filteredRecipes: [],  // Stores recipes that match the search term
+  filterRecipes: () => set(state => ({
+    filteredRecipes: state.recipes.filter(recipe =>
+      recipe.title.toLowerCase().includes(state.searchTerm.toLowerCase()) ||
+      recipe.ingredients.some(ingredient =>
+        ingredient.toLowerCase().includes(state.searchTerm.toLowerCase())
+      ) ||
+      recipe.preparationTime.toString().includes(state.searchTerm)
+    )
+  })),
+}));
+
+export default useRecipeStore;
 
   
   
