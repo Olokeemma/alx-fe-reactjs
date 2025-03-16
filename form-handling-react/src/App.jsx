@@ -1,3 +1,5 @@
+import PostsComponent from './PostsComponent';
+
 import React from 'react';
 import { QueryClient, QueryClientProvider } from 'react-query';  // Import React Query
 import PostsComponent from './PostsComponent';  // Import your PostsComponent
