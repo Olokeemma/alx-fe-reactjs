@@ -28,4 +28,43 @@ function App() {
 
 export default App;
 
+import React, { useEffect } from 'react';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { useRecipeStore } from './components/recipeStore';
+import AddRecipeForm from './components/AddRecipeForm';
+import RecipeList from './components/RecipeList';
+import RecipeDetails from './components/RecipeDetails';
+
+function App() {
+  const { loadRecipes, recipes } = useRecipeStore();
+
+  useEffect(() => {
+    loadRecipes();  // Load recipes from localStorage when the app starts
+  }, [loadRecipes]);
+
+  return (
+    <Router>
+      <div className="App">
+        <h1>Recipe Book</h1>
+
+        <Switch>
+          <Route path="/recipe/:id">
+            {({ match }) => {
+              const recipeId = parseInt(match.params.id, 10);
+              return <RecipeDetails recipeId={recipeId} />;
+            }}
+          </Route>
+          <Route path="/add">
+            <AddRecipeForm />
+          </Route>
+          <Route path="/">
+            <RecipeList recipes={recipes} />
+          </Route>
+        </Switch>
+      </div>
+    </Router>
+  );
+}
+
+export default App;
 

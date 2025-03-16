@@ -39,3 +39,30 @@ function RecipeList() {
 }
 
 export default RecipeList;
+import React from 'react';
+import { Link } from 'react-router-dom';
+
+const RecipeList = ({ recipes }) => {
+  return (
+    <div>
+      <h2>Recipe List</h2>
+      {recipes.length === 0 ? (
+        <p>No recipes available. Add some!</p>
+      ) : (
+        <ul>
+          {recipes.map((recipe) => (
+            <li key={recipe.id}>
+              <Link to={`/recipe/${recipe.id}`}>
+                <h3>{recipe.title}</h3>
+                <p>{recipe.content}</p>
+              </Link>
+            </li>
+          ))}
+        </ul>
+      )}
+    </div>
+  );
+};
+
+export default RecipeList;
+
