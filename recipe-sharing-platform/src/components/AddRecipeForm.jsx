@@ -3,30 +3,37 @@ import { useState } from 'react';
 const AddRecipeForm = () => {
   const [title, setTitle] = useState('');
   const [ingredients, setIngredients] = useState('');
-  const [steps, setSteps] = useState(''); // Change 'instructions' to 'steps'
+  const [steps, setSteps] = useState('');
   const [errors, setErrors] = useState({});
+
+  // Validation logic moved to a separate function
+  const validate = () => {
+    const newErrors = {};
+    if (!title) newErrors.title = 'Title is required';
+    if (!ingredients) newErrors.ingredients = 'Ingredients are required';
+    if (!steps) newErrors.steps = 'Steps are required';
+
+    // Additional validation logic can be added here if needed (e.g., checking ingredients format)
+    return newErrors;
+  };
 
   // Handle form submission
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    // Reset errors
-    setErrors({});
-
-    // Basic validation checks
-    const newErrors = {};
-    if (!title) newErrors.title = 'Title is required';
-    if (!ingredients) newErrors.ingredients = 'Ingredients are required';
-    if (!steps) newErrors.steps = 'Steps are required'; // Validate the 'steps' field
-
+    // Run validation
+    const newErrors = validate();
+    
+    // If validation fails, set errors and stop submission
     if (Object.keys(newErrors).length > 0) {
       setErrors(newErrors);
       return;
     }
 
-    // Assuming you are handling the form submission to an API or state management
-    // Here you would call the function to add the new recipe to your state or backend
+    // Otherwise, submit the data
     console.log('New recipe added:', { title, ingredients, steps });
+
+    // You can add your logic to submit the form data, like sending it to an API or saving it locally
   };
 
   return (
@@ -74,13 +81,13 @@ const AddRecipeForm = () => {
             </label>
             <textarea
               id="steps"
-              value={steps} // Change 'instructions' to 'steps'
-              onChange={(e) => setSteps(e.target.value)} // Change 'setInstructions' to 'setSteps'
+              value={steps}
+              onChange={(e) => setSteps(e.target.value)}
               className="mt-2 p-3 w-full border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
               placeholder="Enter cooking steps"
               rows="6"
             />
-            {errors.steps && <p className="text-red-500 text-sm mt-2">{errors.steps}</p>} {/* Display error for 'steps' */}
+            {errors.steps && <p className="text-red-500 text-sm mt-2">{errors.steps}</p>}
           </div>
 
           {/* Submit Button */}
