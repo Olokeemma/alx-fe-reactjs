@@ -6,34 +6,28 @@ const AddRecipeForm = () => {
   const [steps, setSteps] = useState('');
   const [errors, setErrors] = useState({});
 
-  // Validation logic moved to a separate function
+  // Validation logic
   const validate = () => {
     const newErrors = {};
     if (!title) newErrors.title = 'Title is required';
     if (!ingredients) newErrors.ingredients = 'Ingredients are required';
     if (!steps) newErrors.steps = 'Steps are required';
-
-    // Additional validation logic can be added here if needed (e.g., checking ingredients format)
     return newErrors;
   };
 
-  // Handle form submission
   const handleSubmit = (e) => {
     e.preventDefault();
 
     // Run validation
     const newErrors = validate();
-    
-    // If validation fails, set errors and stop submission
+
     if (Object.keys(newErrors).length > 0) {
       setErrors(newErrors);
       return;
     }
 
-    // Otherwise, submit the data
+    // Submit form logic
     console.log('New recipe added:', { title, ingredients, steps });
-
-    // You can add your logic to submit the form data, like sending it to an API or saving it locally
   };
 
   return (
@@ -52,7 +46,7 @@ const AddRecipeForm = () => {
               id="title"
               value={title}
               onChange={(e) => setTitle(e.target.value)}
-              className="mt-2 p-3 w-full border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="mt-2 p-3 w-full md:w-2/3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
               placeholder="Enter recipe title"
             />
             {errors.title && <p className="text-red-500 text-sm mt-2">{errors.title}</p>}
@@ -67,7 +61,7 @@ const AddRecipeForm = () => {
               id="ingredients"
               value={ingredients}
               onChange={(e) => setIngredients(e.target.value)}
-              className="mt-2 p-3 w-full border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="mt-2 p-3 w-full md:w-2/3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
               placeholder="Enter ingredients (separate with commas)"
               rows="4"
             />
@@ -83,7 +77,7 @@ const AddRecipeForm = () => {
               id="steps"
               value={steps}
               onChange={(e) => setSteps(e.target.value)}
-              className="mt-2 p-3 w-full border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="mt-2 p-3 w-full md:w-2/3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
               placeholder="Enter cooking steps"
               rows="6"
             />
