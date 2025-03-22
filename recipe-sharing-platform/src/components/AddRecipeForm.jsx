@@ -3,7 +3,7 @@ import { useState } from 'react';
 const AddRecipeForm = () => {
   const [title, setTitle] = useState('');
   const [ingredients, setIngredients] = useState('');
-  const [instructions, setInstructions] = useState('');
+  const [steps, setSteps] = useState(''); // Change 'instructions' to 'steps'
   const [errors, setErrors] = useState({});
 
   // Handle form submission
@@ -17,7 +17,7 @@ const AddRecipeForm = () => {
     const newErrors = {};
     if (!title) newErrors.title = 'Title is required';
     if (!ingredients) newErrors.ingredients = 'Ingredients are required';
-    if (!instructions) newErrors.instructions = 'Instructions are required';
+    if (!steps) newErrors.steps = 'Steps are required'; // Validate the 'steps' field
 
     if (Object.keys(newErrors).length > 0) {
       setErrors(newErrors);
@@ -26,7 +26,7 @@ const AddRecipeForm = () => {
 
     // Assuming you are handling the form submission to an API or state management
     // Here you would call the function to add the new recipe to your state or backend
-    console.log('New recipe added:', { title, ingredients, instructions });
+    console.log('New recipe added:', { title, ingredients, steps });
   };
 
   return (
@@ -67,20 +67,20 @@ const AddRecipeForm = () => {
             {errors.ingredients && <p className="text-red-500 text-sm mt-2">{errors.ingredients}</p>}
           </div>
 
-          {/* Instructions Field */}
+          {/* Steps Field */}
           <div className="mb-4">
-            <label htmlFor="instructions" className="block text-lg font-semibold text-gray-700">
-              Cooking Instructions
+            <label htmlFor="steps" className="block text-lg font-semibold text-gray-700">
+              Cooking Steps
             </label>
             <textarea
-              id="instructions"
-              value={instructions}
-              onChange={(e) => setInstructions(e.target.value)}
+              id="steps"
+              value={steps} // Change 'instructions' to 'steps'
+              onChange={(e) => setSteps(e.target.value)} // Change 'setInstructions' to 'setSteps'
               className="mt-2 p-3 w-full border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-              placeholder="Enter cooking instructions"
+              placeholder="Enter cooking steps"
               rows="6"
             />
-            {errors.instructions && <p className="text-red-500 text-sm mt-2">{errors.instructions}</p>}
+            {errors.steps && <p className="text-red-500 text-sm mt-2">{errors.steps}</p>} {/* Display error for 'steps' */}
           </div>
 
           {/* Submit Button */}
